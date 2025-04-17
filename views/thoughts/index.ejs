@@ -10,5 +10,20 @@
 <body>
     <%- include('../partials/nav.ejs') %>
     <h1 class="page-title">Every Thought</h1>
+    <main>
+        <section class="thoughts">
+            <% thoughts.forEach(thought => { %>
+                <article class="each-thought">
+                    <a href="/thoughts/<%= thought._id %>">
+                        <% thought.categories.forEach(category => { %>
+                            <p><%= category %> - <%= thought.content %></p>
+                        <% }); %>
+                    </a>
+                </article>
+     
+            <% }) %>
+        </section>
+    </main>
+    
 </body>
 </html>

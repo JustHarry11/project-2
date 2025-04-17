@@ -10,5 +10,23 @@
 <body>
     <%- include('../partials/nav.ejs') %>
     <h1 class="page-title">Add Thought</h1>
+
+    <form action="/thoughts" method="POST">
+        <div class="input-control">
+            <label for="content">Content</label>
+            <textarea name="content" id="content"></textarea>
+        </div>
+        <div class="input-control">
+            <label for="categories">Category</label>
+            <select name="categories" id="categories" multiple>
+                <option value="Casual Thought">Casual Thought</option>
+                <option value="Crazy Idea">Crazy Idea</option>
+                <option value="Speculation">Speculation</option>
+                <option value="Musing">Musing</option>
+            </select>
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
 </body>
 </html>

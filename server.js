@@ -10,6 +10,7 @@ const app = express()
 const port = process.env.PORT || 3000
 
 // ! Middleware
+app.use(express.urlencoded())
 app.use(morgan('dev'))
 app.use(express.static('public'))
 

@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const thoughtSchema = new mongoose.Schema({
     content: { type: String, required: true},
-    category: [String]
+    categories: [String]
 }, {
     timestamps: true
 })
