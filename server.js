@@ -1,6 +1,7 @@
 import express from 'express'
 import morgan from 'morgan'
 import mongoose from 'mongoose'
+import methodOverride from 'method-override'
 import 'dotenv/config'
 
 import thoughtsRouter from './controllers/thoughts.js'
@@ -13,6 +14,7 @@ const port = process.env.PORT || 3000
 app.use(express.urlencoded())
 app.use(morgan('dev'))
 app.use(express.static('public'))
+app.use(methodOverride('_method'))
 
 // ! Routes
 // ? Defined in server.js
