@@ -10,12 +10,18 @@
 <body>
     <%- include('../partials/nav.ejs') %>
     <h1 class="page-title">Thought</h1>
-    <ul class="tags">
-        <% thought.categories.forEach(category => { %>
-            <li><%= category %></li>
-        <% }); %>
-    </ul>
-    <p><%= thought.content %></p>
+    <div class="controls">
+        <a class="edit" href="/thoughts/<%= thought._id %>/edit">📝</a>
+    </div>
+    <div class="thought">
+        <ul class="tags">
+            <% thought.categories.forEach(category => { %>
+                <li><%= category %></li>
+            <% }); %>
+        </ul>
+        <p><%= thought.content %></p>
+    </div>
+    
 
 
 </body>
