@@ -13,12 +13,12 @@
     <form action="/thoughts/<%= thought._id %>?_method=PUT" method="POST">
         <div class="input-control">
             <label for="content">Thought</label>
-            <textarea name="content" id="content"><%= thought.content %>
+            <textarea name="content" id="content" required><%= thought.content %>
             </textarea>
         </div>
         <div class="input-control">
             <label for="categories">Category</label>
-            <select name="categories" id="categories" multiple>
+            <select name="categories" id="categories" required>
                 <option value="Casual Thought" <%= thought.categories.includes('Casual Thought') ? 'selected' : '' %>>Casual Thought</option>
                 <option value="Crazy Idea" <%= thought.categories.includes('Crazy Idea') ? 'selected' : '' %>>Crazy Idea</option>
                 <option value="Speculation" <%= thought.categories.includes('Speculation') ? 'selected' : '' %>>Speculation</option>

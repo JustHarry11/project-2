@@ -12,6 +12,9 @@
     <h1 class="page-title">Thought</h1>
     <div class="controls">
         <a class="edit" href="/thoughts/<%= thought._id %>/edit">📝</a>
+        <form action="/thoughts/<%= thought._id %>?_method=DELETE" method="POST">
+            <button class="delete" type="submit">🪦</button>
+        </form>
     </div>
     <div class="thought">
         <ul class="tags">

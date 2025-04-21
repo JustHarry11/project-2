@@ -17,18 +17,18 @@ app.use(express.static('public'))
 app.use(methodOverride('_method'))
 
 // ! Routes
-// ? Defined in server.js
-// Home page
 app.get('/', (req, res) => {
     return res.render('index.ejs')
 })
 
 
-
-// ? Defined in dedicated controller files
-// Thoughts (create, index, show, update, delete)
 app.use('/', thoughtsRouter)
-// Users (register/login/profile)
+
+
+// ! 404 Route
+app.get('/{*any}', (req, res) => {
+    return res.status(404).render('404.ejs')
+})
 
 // ! Listen
 async function startServer(){
