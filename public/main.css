@@ -33,3 +33,7 @@ a + a {
 .each-thought a:hover{
     color: #7e0303;
 }
+
+label {
+    display: block;
+}

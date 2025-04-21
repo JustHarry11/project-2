@@ -2,4 +2,10 @@
     <a href="/">Home</a>
     <a href="/thoughts">Thoughts</a>
     <a href="/thoughts/new">Add Thought</a>
+
+    <% if(user){%>
+        <a href="/auth/sign-out">Sign Out</a>
+    <%} else {%>
+        <a href="/auth/sign-in">Sign In</a>
+    <%}%>
 </nav>

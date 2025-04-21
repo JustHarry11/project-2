@@ -2,9 +2,13 @@ import express from 'express'
 import morgan from 'morgan'
 import mongoose from 'mongoose'
 import methodOverride from 'method-override'
+import session from 'express-session'
+import MongoStore from 'connect-mongo'
 import 'dotenv/config'
 
+import passUserToView from './middleware/passUserToView.js'
 import thoughtsRouter from './controllers/thoughts.js'
+import authRouter from './controllers/auth.js'
 
 // ! Variables
 const app = express()
@@ -15,6 +19,16 @@ app.use(express.urlencoded())
 app.use(morgan('dev'))
 app.use(express.static('public'))
 app.use(methodOverride('_method'))
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+        mongoUrl: process.env.MONGODB_URI
+    })
+}))
+
+app.use(passUserToView)
 
 // ! Routes
 app.get('/', (req, res) => {
@@ -23,6 +37,8 @@ app.get('/', (req, res) => {
 
 
 app.use('/', thoughtsRouter)
+app.use('/', authRouter)
+
 
 
 // ! 404 Route

@@ -4,7 +4,7 @@ import Thought from '../models/Thought.js'
 
 const router = express.Router()
 
-// GET ALL THOUGHTS
+// INDEX
 router.get('/thoughts', async (req, res) => {
     try {
         const allThoughts = await Thought.find()
@@ -67,6 +67,7 @@ router.get('/thoughts/:thoughtId', async (req, res, next) => {
     }
 })
 
+// ! DONT RENDER A WEB PAGE
 // CREATE
 router.post('/thoughts', async (req, res) => {
     try {
