@@ -5,10 +5,12 @@ import methodOverride from 'method-override'
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
 import 'dotenv/config'
-
 import passUserToView from './middleware/passUserToView.js'
+import passErrorToView from './middleware/passErrorToView.js'
+
 import thoughtsRouter from './controllers/thoughts.js'
 import authRouter from './controllers/auth.js'
+import commentRouter from './controllers/comments.js'
 
 // ! Variables
 const app = express()
@@ -29,6 +31,7 @@ app.use(session({
 }))
 
 app.use(passUserToView)
+app.use(passErrorToView)
 
 // ! Routes
 app.get('/', (req, res) => {
@@ -37,6 +40,7 @@ app.get('/', (req, res) => {
 
 
 app.use('/', thoughtsRouter)
+app.use('/', commentRouter)
 app.use('/', authRouter)
 
 

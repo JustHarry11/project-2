@@ -40,6 +40,37 @@
         <% } %>
     </div>
 
+    <div class="comments-section">
+        <div class="comments">
+            <h2>Comments</h2>
+            <% if (thought.comments.length === 0) { %>
+                <p>First Comment</p>
+            <% } %>
+            <% thought.comments.reverse().forEach(comment => { %>
+                <div class="comment">
+                    <h3>Hello <%= comment.author.username %></h3>
+
+                    <% if (comment.author.equals(user._id)) { %>
+                        <form action="/thoughts/<%= thought._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                            <button class="delete-button" type="submit">🗑️</button>
+                        </form>
+                    <% } %>
+                    <p><%= comment.content %></p>
+                </div> 
+            <% }) %>
+        </div>
+        
+        <form action="/thoughts/<%= thought._id %>/comments" method="POST">
+            <h2>Leave a comment</h2>
+            <label hidden for="content">Content</label>
+            <textarea name="content" id="content"></textarea>
+            <% if (errorMessage) { %>
+                <p class="error-message"><%= errorMessage %></p>
+            <% } %>
+            <button type="submit">submit</button>
+        </form>
+    </div>
+
 
 </body>
 </html>
