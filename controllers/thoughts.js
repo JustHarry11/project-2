@@ -115,16 +115,61 @@ router.put('/thoughts/:thoughtId', isSignedIn, async (req, res, next) => {
 })
 
 // DELETE
-router.delete('/thoughts/:thoughtsId', isSignedIn, async (req, res, next) => {
+router.delete('/thoughts/:thoughtId', isSignedIn, async (req, res, next) => {
     try {
         if(!mongoose.isValidObjectId(req.params.thoughtId)){
             return next()
         }
-        await Thought.findByIdAndDelete(req.params.thoughtsId)
+        await Thought.findByIdAndDelete(req.params.thoughtId)
         return res.redirect('/thoughts')
     } catch (error) {
         console.log(error)
     }
 })
+
+router.post('/thoughts/:thoughtId/like', isSignedIn, async (req, res, next) => {
+    try {
+        if(!mongoose.isValidObjectId(req.params.thoughtId)){
+            return next()
+        }
+
+        const thought = await Thought.findById(req.params.thoughtId)
+        const alreadyLiked = thought.likes.find(userId => userId.equals(req.session.user._id))
+
+        if(!alreadyLiked) {
+            thought.likes.push(req.session.user._id)
+        }
+
+        await thought.save()
+
+        return res.redirect(`/thoughts/${thought._id}`)
+
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+router.delete('/thoughts/:thoughtId/like', isSignedIn, async (req, res, next) => {
+    try {
+        if(!mongoose.isValidObjectId(req.params.thoughtId)){
+            return next()
+        }
+
+        const thought = await Thought.findById(req.params.thoughtId)
+        const alreadyLiked = thought.likes.find(userId => userId.equals(req.session.user._id))
+
+        if(alreadyLiked) {
+            thought.likes.pull(req.session.user._id)
+        }
+
+        await thought.save()
+
+        return res.redirect(`/thoughts/${thought._id}`)
+
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 
 export default router

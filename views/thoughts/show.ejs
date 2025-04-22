@@ -28,7 +28,17 @@
         <p><%= thought.content %></p>
         <p>A thought from <%= thought.author.username %></p>
     </div>
-    
+    <div class="interactions">
+        <% if (thought.likes.find(likedById => likedById.equals(user._id))) { %>
+                <form action="/thoughts/<%= thought._id %>/like?_method=DELETE" method="POST">
+                <button class="like-button" type="submit">UnLike <%= thought.likes.length %></button>
+            </form>
+        <% } else { %>
+                <form action="/thoughts/<%= thought._id %>/like" method="POST">
+                <button class="like-button" type="submit">Like <%= thought.likes.length %></button>
+            </form>
+        <% } %>
+    </div>
 
 
 </body>
