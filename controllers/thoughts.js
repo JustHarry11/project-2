@@ -1,11 +1,12 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import Thought from '../models/Thought.js'
+import isSignedIn from '../middleware/isSignedIn.js'
 
 const router = express.Router()
 
 // INDEX
-router.get('/thoughts', async (req, res) => {
+router.get('/thoughts',  async (req, res) => {
     try {
         const allThoughts = await Thought.find()
         console.log(allThoughts)
@@ -18,7 +19,7 @@ router.get('/thoughts', async (req, res) => {
 })
 
 // NEW
-router.get('/thoughts/new', (req, res) => {
+router.get('/thoughts/new',isSignedIn, (req, res) => {
     try {
         return res.render('thoughts/new.ejs', {
             errorMessage: ''
@@ -29,7 +30,7 @@ router.get('/thoughts/new', (req, res) => {
 })
 
 // EDIT
-router.get('/thoughts/:thoughtId/edit', async (req,res, next) => {
+router.get('/thoughts/:thoughtId/edit', isSignedIn, async (req,res, next) => {
     try {
         if(!mongoose.isValidObjectId(req.params.thoughtId)){
             return next()
@@ -38,6 +39,10 @@ router.get('/thoughts/:thoughtId/edit', async (req,res, next) => {
 
         if(!thought){
             return next()
+        }
+
+        if(!thought.author.equals(req.session.user._id)){
+            return res.redirect(`/thoughts/${thought._id}`)
         }
         return res.render('thoughts/edit.ejs', {
             thought
@@ -54,7 +59,7 @@ router.get('/thoughts/:thoughtId', async (req, res, next) => {
             return next()
         }
 
-        const thought = await Thought.findById(req.params.thoughtId)
+        const thought = await Thought.findById(req.params.thoughtId).populate('author')
 
         if(!thought){
             return next()
@@ -69,8 +74,10 @@ router.get('/thoughts/:thoughtId', async (req, res, next) => {
 
 // ! DONT RENDER A WEB PAGE
 // CREATE
-router.post('/thoughts', async (req, res) => {
+router.post('/thoughts', isSignedIn, async (req, res) => {
     try {
+        req.body.author = req.session.user._id
+
         const newThought = await Thought.create(req.body)
         return res.redirect(`/thoughts/${newThought._id}`)
     } catch (error) {
@@ -82,12 +89,18 @@ router.post('/thoughts', async (req, res) => {
 })
 
 // UPDATE
-router.put('/thoughts/:thoughtId', async (req, res, next) => {
+router.put('/thoughts/:thoughtId', isSignedIn, async (req, res, next) => {
     try {
         const thoughtId = req.params.thoughtId
 
         if(!mongoose.isValidObjectId(req.params.thoughtId)){
             return next()
+        }
+        const thought = await Thought.findById(thoughtId)
+        const loggedInUserId = req.session.user._id
+        const thoughtAuthor = thought.author
+        if(!thoughtAuthor.equals(loggedInUserId)){
+            return res.status(403).render('/404.ejs')
         }
         
         const updatedThought = await Thought.findByIdAndUpdate(thoughtId, req.body)
@@ -102,7 +115,7 @@ router.put('/thoughts/:thoughtId', async (req, res, next) => {
 })
 
 // DELETE
-router.delete('/thoughts/:thoughtsId', async (req, res, next) => {
+router.delete('/thoughts/:thoughtsId', isSignedIn, async (req, res, next) => {
     try {
         if(!mongoose.isValidObjectId(req.params.thoughtId)){
             return next()
