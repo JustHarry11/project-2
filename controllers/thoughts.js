@@ -59,7 +59,7 @@ router.get('/thoughts/:thoughtId', async (req, res, next) => {
             return next()
         }
 
-        const thought = await Thought.findById(req.params.thoughtId).populate('author')
+        const thought = await Thought.findById(req.params.thoughtId).populate(['author', 'comments.author'])
 
         if(!thought){
             return next()

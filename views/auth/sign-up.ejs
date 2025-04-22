@@ -8,7 +8,7 @@
     <title>Sign Up</title>
 </head>
 <body>
-    <h1>Create a account</h1>
+    <h1 class="page-title">Create a account</h1>
     <form action="/auth/sign-up" method="POST">
         <div class="input-control">
             <label for="email">Email</label>
@@ -31,7 +31,7 @@
             <p class="error-message"><%= errorMessage %></p>
         <% } %>
 
-        <button type="submit">Sign Up</button>
+        <button class="submit" type="submit">Sign Up</button>
     </form>
 </body>
 </html>
