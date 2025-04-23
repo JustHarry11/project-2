@@ -10,8 +10,6 @@
 <body>
     <%- include('./partials/nav.ejs') %>
     <h1 class="page-title">A Random Thought To Start Your Day</h1>
-    <p><%= author.username %></p>
-    <p><%= thought.content %></p>
     <article class="each-thought">
         <a href="/thoughts/<%= thought._id %>">
             <% thought.categories.forEach(category => { %>
