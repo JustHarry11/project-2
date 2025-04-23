@@ -8,6 +8,8 @@ import 'dotenv/config'
 import passUserToView from './middleware/passUserToView.js'
 import passErrorToView from './middleware/passErrorToView.js'
 
+import Thought from './models/Thought.js'
+
 import thoughtsRouter from './controllers/thoughts.js'
 import authRouter from './controllers/auth.js'
 import commentRouter from './controllers/comments.js'
@@ -34,7 +36,23 @@ app.use(passUserToView)
 app.use(passErrorToView)
 
 // ! Routes
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
+        try {
+            const randomThoughts = await Thought.aggregate([{$sample: {size: 1}}, {$lookup: {
+                from: "User",
+                localField: "author",
+                foreignField: "_id",
+                as: "authorDetails"
+            }}])
+            console.log(randomThoughts.$lookup)
+            return res.render('index.ejs', {
+                thoughts: randomThoughts
+            })
+            
+            
+        } catch (error) {
+            console.log(error)
+        }
     return res.render('index.ejs')
 })
 

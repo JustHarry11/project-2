@@ -80,6 +80,19 @@ button:not(.submit) {
 .each-thought {
     display: flex;
     justify-content: center;
-    /*border: 2px solid black;*/
+    /* border: 2px solid black; */
     margin-top: 10px;
+    
+}
+
+/* ADD THOUGHT PAGE */
+.add-thoughts {
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+textarea {
+    height: 50px
+}
+input {
+    height: 25px
 }
