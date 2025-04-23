@@ -9,21 +9,18 @@
 </head>
 <body>
     <%- include('./partials/nav.ejs') %>
-    <h1 class="page-title">Shower Thoughts</h1>
-    <section class="thoughts">
-        <% thoughts.forEach(thought => { %>
-            <article class="each-thought">
-                <a href="/thoughts/<%= thought._id %>">
-                    <% thought.categories.forEach(category => { %>
-                        <p class="tags"><%= category %></p>
-                        <p><%= thought.content %></p>
-                        <p>♥️ -  | A thought from <%= thought.author.username %> |  - 💬</p>
-                    <% }); %>
-                </a>
-            </article>
- 
-        <% }) %>
-    </section>
+    <h1 class="page-title">A Random Thought To Start Your Day</h1>
+    <p><%= author.username %></p>
+    <p><%= thought.content %></p>
+    <article class="each-thought">
+        <a href="/thoughts/<%= thought._id %>">
+            <% thought.categories.forEach(category => { %>
+                <p class="tags"><%= category %></p>
+                <p><%= thought.content %></p>
+                <p>♥️ - <%= thought.likes ? thought.likes.length : 0 %> | A thought from <%= author.username %> | <%= thought.comments ? thought.comments.length : 0 %> - 💬</p>
+            <% }); %>
+        </a>
+    </article>
     
 </body>
 </html>

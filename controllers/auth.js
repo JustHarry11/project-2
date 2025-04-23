@@ -4,8 +4,8 @@ import User from '../models/User.js'
 import isSignedOut from '../middleware/isSignedOut.js'
 
 const router = express.Router()
-// ! ROUTES
-// SIGN UP
+
+
 router.get('/auth/sign-up', isSignedOut, (req, res) => {
     try {
         return res.render('auth/sign-up.ejs', {
@@ -16,7 +16,7 @@ router.get('/auth/sign-up', isSignedOut, (req, res) => {
     }
 })
 
-// SIGN IN
+
 router.get('/auth/sign-in', isSignedOut,(req, res) => {
     try {
         return res.render('auth/sign-in.ejs', {
@@ -28,7 +28,6 @@ router.get('/auth/sign-in', isSignedOut,(req, res) => {
 })
 
 
-// ? CREATE A USER
 router.post('/auth/sign-up', isSignedOut, async (req, res) => {
     try {
         if(req.body.password !== req.body.passwordConfirm) {
@@ -56,6 +55,7 @@ router.post('/auth/sign-up', isSignedOut, async (req, res) => {
         })
     }
 })
+
 
 router.post('/auth/sign-in', isSignedOut, async (req, res) => {
     console.log(req.body)
@@ -85,9 +85,12 @@ router.post('/auth/sign-in', isSignedOut, async (req, res) => {
     }
 })
 
+
 router.get('/auth/sign-out', (req, res) => {
     req.session.destroy(() => {
       res.redirect('/auth/sign-in')
     })
   })
+
+  
 export default router

@@ -30,7 +30,7 @@
             <p>A thought from <%= thought.author.username %></p>
         </div>
         <div class="interactions">
-            <% if (thought.likes.find(likedById => likedById.equals(user._id))) { %>
+            <% if (user && thought.likes.find(likedById => likedById.equals(user._id))) { %>
                     <form action="/thoughts/<%= thought._id %>/like?_method=DELETE" method="POST">
                     <button class="like-button" type="submit"> ♥️ <%= thought.likes.length %></button>
                 </form>
@@ -49,7 +49,7 @@
                 <% } %>
                 <% thought.comments.reverse().forEach(comment => { %>
                     <div class="comment">
-                        <% if (comment.author.equals(user._id)) { %>
+                        <% if (user && comment.author.equals(user._id)) { %>
                             <form action="/thoughts/<%= thought._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
                                 <button class="delete-button" type="submit">🗑️</button>
                             </form>

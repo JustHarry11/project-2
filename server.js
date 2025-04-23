@@ -39,21 +39,24 @@ app.use(passErrorToView)
 app.get('/', async (req, res) => {
         try {
             const randomThoughts = await Thought.aggregate([{$sample: {size: 1}}, {$lookup: {
-                from: "User",
+                from: "users",
                 localField: "author",
                 foreignField: "_id",
                 as: "authorDetails"
             }}])
-            console.log(randomThoughts.$lookup)
+
+            
+            console.log(randomThoughts[0])
+            
             return res.render('index.ejs', {
-                thoughts: randomThoughts
+                thought: randomThoughts[0],
+                author: randomThoughts[0].authorDetails[0]
             })
             
             
         } catch (error) {
             console.log(error)
         }
-    return res.render('index.ejs')
 })
 
 

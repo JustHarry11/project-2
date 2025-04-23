@@ -45,7 +45,7 @@ input, textarea, select{
     width: 25%;
     margin-bottom: 1rem;
     border-radius: 0;
-    border: 1px solid rgba(0,0,0,0.1)
+    border: 2px solid black
 }
 /* SHOW THOUGHT PAGE */
 .show-thought {
@@ -72,7 +72,7 @@ button:not(.submit) {
 }
 
 .submit {
-    background-color: white;
+    
     font-family: "Urbanist", sans-serif;
 }
 
@@ -86,7 +86,7 @@ button:not(.submit) {
 }
 
 /* ADD THOUGHT PAGE */
-.add-thoughts {
+.add-thoughts .input-control {
     margin: 0 auto;
     padding: 0 1rem;
 }
@@ -95,4 +95,9 @@ textarea {
 }
 input {
     height: 25px
+}
+.submit {
+    color: black;
+    background-color: white;
+    border: 2px solid black;
 }
