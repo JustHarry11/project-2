@@ -13,9 +13,9 @@
     <main class="show-thought">
         <% if (user && thought.author.equals(user._id)) { %>
             <div class="controls">
-                <a class="edit" href="/thoughts/<%= thought._id %>/edit">📝</a>
+                <a class="edit" href="/thoughts/<%= thought._id %>/edit">🔧</a>
                 <form action="/thoughts/<%= thought._id %>?_method=DELETE" method="POST">
-                    <button class="delete-button" type="submit">🪦</button>
+                    <button class="delete-button" type="submit">❌</button>
                 </form>
             </div>
         <% } %>
@@ -49,14 +49,12 @@
                 <% } %>
                 <% thought.comments.reverse().forEach(comment => { %>
                     <div class="comment">
-                        <h3><%= comment.author.username %></h3>
-    
                         <% if (comment.author.equals(user._id)) { %>
                             <form action="/thoughts/<%= thought._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
                                 <button class="delete-button" type="submit">🗑️</button>
                             </form>
                         <% } %>
-                        <p><%= comment.content %></p>
+                        <p><%= comment.author.username %> - <%= comment.content %></p>
                     </div> 
                 <% }) %>
             </div>

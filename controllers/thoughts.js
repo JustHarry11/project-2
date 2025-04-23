@@ -8,7 +8,7 @@ const router = express.Router()
 // INDEX
 router.get('/thoughts',  async (req, res) => {
     try {
-        const allThoughts = await Thought.find()
+        const allThoughts = await Thought.find().populate('author')
         console.log(allThoughts)
         return res.render('thoughts/index.ejs', {
             thoughts: allThoughts

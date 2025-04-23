@@ -62,8 +62,8 @@ input, textarea, select{
     justify-content: center;
     gap: 10px;
 }
-.controls a:hover{
-    color: #7e0303;
+.edit {
+    text-decoration: none;
 }
 button:not(.submit) {
     padding: 0;
@@ -74,4 +74,12 @@ button:not(.submit) {
 .submit {
     background-color: white;
     font-family: "Urbanist", sans-serif;
+}
+
+/* INDEX PAGE */
+.each-thought {
+    display: flex;
+    justify-content: center;
+    /*border: 2px solid black;*/
+    margin-top: 10px;
 }
