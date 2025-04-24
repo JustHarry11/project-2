@@ -152,3 +152,14 @@ input {
 .form {
     text-align: center;
 }
+
+.return {
+    text-align: center;
+}
+
+.content a:hover{
+    color: #7e0303;
+}
+.footer a:hover{
+    color: #7e0303;
+}

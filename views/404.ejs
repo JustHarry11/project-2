@@ -8,8 +8,17 @@
     <title>Page Not Fount</title>
 </head>
 <body>
-    <%- include('./partials/nav.ejs') %>
-    <h1 class="page-title">Page not found</h1>
-    <a href="/">Back to home</a>
+    <div class="container">
+        <header class="header">
+            <%- include('./partials/nav.ejs') %>
+        </header>
+        <main class="content">
+            <h1 class="page-title">Page not found</h1>
+            <a class="return" href="/">Back to home</a>
+        </main>
+        <footer class="footer">
+            <%- include('./partials/footer.ejs') %>
+        </footer>
+    </div>
 </body>
 </html>

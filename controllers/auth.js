@@ -58,7 +58,6 @@ router.post('/auth/sign-up', isSignedOut, async (req, res) => {
 
 
 router.post('/auth/sign-in', isSignedOut, async (req, res) => {
-    console.log(req.body)
     try {
         const foundUser = await User.findOne({ email: req.body.email })
         
@@ -78,8 +77,10 @@ router.post('/auth/sign-in', isSignedOut, async (req, res) => {
             email: foundUser.email,
             _id: foundUser._id
         }
-
-        res.redirect('/thoughts')
+        req.session.save(() => {
+            return res.redirect('/thoughts')
+        })
+        
     } catch (error) {
         
     }
