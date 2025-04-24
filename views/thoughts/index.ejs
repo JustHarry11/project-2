@@ -8,24 +8,33 @@
     <title>Every Thought | Shower Thoughts</title>
 </head>
 <body>
-    <%- include('../partials/nav.ejs') %>
-    <h1 class="page-title">Every Thought</h1>
-    <main>
-        <section class="thoughts">
-            <% thoughts.forEach(thought => { %>
-                <article class="each-thought">
-                    <a href="/thoughts/<%= thought._id %>">
-                        <% thought.categories.forEach(category => { %>
-                            <p class="tags"><%= category %></p>
-                            <p><%= thought.content %></p>
-                            <p>♥️ - <%= thought.likes.length %> | A thought from <%= thought.author.username %> | <%= thought.comments.length %> - 💬</p>
-                        <% }); %>
-                    </a>
-                </article>
-     
-            <% }) %>          
-        </section>
-    </main>
+    <div class="container">
+        <header class="header">
+            <%- include('../partials/nav.ejs') %>
+        </header>
+        
+        <main class="content">
+            <h1 class="page-title">Every Thought</h1>
+            <section class="thoughts">
+                <% thoughts.forEach(thought => { %>
+                    <article class="each-thought">
+                        <a href="/thoughts/<%= thought._id %>">
+                            <% thought.categories.forEach(category => { %>
+                                <p class="tags"><%= category %></p>
+                                <p><%= thought.content %></p>
+                                <p>♥️ - <%= thought.likes.length %> | A thought from <%= thought.author.username %> | <%= thought.comments.length %> - 💬</p>
+                            <% }); %>
+                        </a>
+                    </article>
+         
+                <% }) %>          
+            </section>
+        </main>
+        <footer class="footer">
+            <%- include('../partials/footer.ejs') %>
+        </footer>
+    </div>
+
     
 </body>
 </html>

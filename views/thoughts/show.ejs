@@ -8,71 +8,84 @@
     <title>Thought | Shower Thoughts</title>
 </head>
 <body>
-    <%- include('../partials/nav.ejs') %>
-    <h1 class="page-title">Thought</h1>
-    <main class="show-thought">
-        <% if (user && thought.author.equals(user._id)) { %>
-            <div class="controls">
-                <a class="edit" href="/thoughts/<%= thought._id %>/edit">🔧</a>
-                <form action="/thoughts/<%= thought._id %>?_method=DELETE" method="POST">
-                    <button class="delete-button" type="submit">❌</button>
-                </form>
-            </div>
-        <% } %>
+    <div class="container">
+        <header class="header">
+            <%- include('../partials/nav.ejs') %>
+        </header>
         
-        <div class="thought">
-            <ul class="tags">
-                <% thought.categories.forEach(category => { %>
-                    <li><%= category %></li>
-                <% }); %>
-            </ul>
-            <p><%= thought.content %></p>
-            <p>A thought from <%= thought.author.username %></p>
-        </div>
-        <div class="interactions">
-            <% if (user && thought.likes.find(likedById => likedById.equals(user._id))) { %>
-                    <form action="/thoughts/<%= thought._id %>/like?_method=DELETE" method="POST">
-                    <button class="like-button" type="submit"> ♥️ <%= thought.likes.length %></button>
-                </form>
-            <% } else { %>
-                    <form action="/thoughts/<%= thought._id %>/like" method="POST">
-                    <button class="like-button" type="submit"> 🤍 <%= thought.likes.length %></button>
-                </form>
-            <% } %>
-        </div>
-    
-        <div class="comments-section">
-            <div class="comments">
-                <h2>Comments</h2>
-                <% if (thought.comments.length === 0) { %>
-                    <p>First Comment</p>
+        
+        <main class="content">
+            <h1 class="page-title">Thought</h1>
+            <div class="show-thought">
+                <% if (user && thought.author.equals(user._id)) { %>
+                    <div class="controls">
+                        <a class="edit" href="/thoughts/<%= thought._id %>/edit">🔧</a>
+                        <form action="/thoughts/<%= thought._id %>?_method=DELETE" method="POST">
+                            <button class="delete-button" type="submit">❌</button>
+                        </form>
+                    </div>
                 <% } %>
-                <% thought.comments.reverse().forEach(comment => { %>
-                    <div class="comment">
-                        <% if (user && comment.author.equals(user._id)) { %>
-                            <form action="/thoughts/<%= thought._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
-                                <button class="delete-button" type="submit">🗑️</button>
-                            </form>
-                        <% } %>
-                        <p><%= comment.author.username %> - <%= comment.content %></p>
-                    </div> 
-                <% }) %>
-            </div>
-            
-            <form action="/thoughts/<%= thought._id %>/comments" method="POST">
-                <div class="input-control">
-                    <h2>Leave a comment</h2>
-                    <label for="content"></label>
-                    <textarea name="content" id="content" placeholder="What did you think?" required></textarea>
+                
+                <div class="thought">
+                    <ul class="tags">
+                        <% thought.categories.forEach(category => { %>
+                            <li><%= category %></li>
+                        <% }); %>
+                    </ul>
+                    <p><%= thought.content %></p>
+                    <p>A thought from <%= thought.author.username %></p>
                 </div>
-                <% if (errorMessage) { %>
-                    <p class="error-message"><%= errorMessage %></p>
-                <% } %>
+                <div class="interactions">
+                    <% if (user && thought.likes.find(likedById => likedById.equals(user._id))) { %>
+                            <form action="/thoughts/<%= thought._id %>/like?_method=DELETE" method="POST">
+                            <button class="like-button" type="submit"> ♥️ <%= thought.likes.length %></button>
+                        </form>
+                    <% } else { %>
+                            <form action="/thoughts/<%= thought._id %>/like" method="POST">
+                            <button class="like-button" type="submit"> 🤍 <%= thought.likes.length %></button>
+                        </form>
+                    <% } %>
+                </div>
+            
+                <div class="comments-section">
+                    <div class="comments">
+                        <h2>Comments</h2>
+                        <% if (thought.comments.length === 0) { %>
+                            <p>First Comment</p>
+                        <% } %>
+                        <% thought.comments.reverse().forEach(comment => { %>
+                            <div class="comment">
+                                <% if (user && comment.author.equals(user._id)) { %>
+                                    <form action="/thoughts/<%= thought._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                        <button class="delete-button" type="submit">🗑️</button>
+                                    </form>
+                                <% } %>
+                                <p><%= comment.author.username %> - <%= comment.content %></p>
+                            </div> 
+                        <% }) %>
+                    </div>
+                    
+                    <form action="/thoughts/<%= thought._id %>/comments" method="POST">
+                        <div class="input-control">
+                            <h2>Leave a comment</h2>
+                            <label for="content"></label>
+                            <textarea name="content" id="content" placeholder="What did you think?" required></textarea>
+                        </div>
+                        <% if (errorMessage) { %>
+                            <p class="error-message"><%= errorMessage %></p>
+                        <% } %>
+        
+                        <button class="submit" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
 
-                <button class="submit" type="submit">Submit</button>
-            </form>
-        </div>
-    </main>
+        </main>
+        <footer class="footer">
+            <%- include('../partials/footer.ejs') %>
+        </footer>
+    </div>
+
 
 </body>
 </html>

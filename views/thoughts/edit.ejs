@@ -8,25 +8,36 @@
     <title>Edit Thought | Shower Thoughts</title>
 </head>
 <body>
-    <%- include('../partials/nav.ejs') %>
-    <h1>Edit</h1>
 
-    <form action="/thoughts/<%= thought._id %>?_method=PUT" method="POST">
-        <div class="input-control">
-            <label for="content">Thought</label>
-            <textarea name="content" id="content" required><%= thought.content %></textarea>
-        </div>
-        <div class="input-control">
-            <label for="categories">Category</label>
-            <select name="categories" id="categories" required>
-                <option value="Casual Thought" <%= thought.categories.includes('Casual Thought') ? 'selected' : '' %>>Casual Thought</option>
-                <option value="Crazy Idea" <%= thought.categories.includes('Crazy Idea') ? 'selected' : '' %>>Crazy Idea</option>
-                <option value="Speculation" <%= thought.categories.includes('Speculation') ? 'selected' : '' %>>Speculation</option>
-                <option value="Musing" <%= thought.categories.includes('Musing') ? 'selected' : '' %>>Musing</option>
-            </select>
-        </div>
+    <div class="container">
+        <header class="header">
+            <%- include('../partials/nav.ejs') %>
+        </header>
+        <main class="content">
+            <h1>Edit Thought</h1>
+    
+            <form action="/thoughts/<%= thought._id %>?_method=PUT" method="POST">
+                <div class="input-control">
+                    <label for="content">Thought</label>
+                    <textarea name="content" id="content" required><%= thought.content %></textarea>
+                </div>
+                <div class="input-control">
+                    <label for="categories">Category</label>
+                    <select name="categories" id="categories" required>
+                        <option value="Casual Thought" <%= thought.categories.includes('Casual Thought') ? 'selected' : '' %>>Casual Thought</option>
+                        <option value="Crazy Idea" <%= thought.categories.includes('Crazy Idea') ? 'selected' : '' %>>Crazy Idea</option>
+                        <option value="Speculation" <%= thought.categories.includes('Speculation') ? 'selected' : '' %>>Speculation</option>
+                        <option value="Musing" <%= thought.categories.includes('Musing') ? 'selected' : '' %>>Musing</option>
+                    </select>
+                </div>
+        
+                <button type="submit">Submit</button>
+            </form>            
+        </main>
+        <footer class="footer">
+            <%- include('../partials/footer.ejs') %>
+        </footer>
+    </div>
 
-        <button type="submit">Submit</button>
-    </form>
 </body>
 </html>

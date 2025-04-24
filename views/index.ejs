@@ -8,17 +8,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <%- include('./partials/nav.ejs') %>
-    <h1 class="page-title">A Random Thought To Start Your Day</h1>
-    <article class="each-thought">
-        <a href="/thoughts/<%= thought._id %>">
-            <% thought.categories.forEach(category => { %>
-                <p class="tags"><%= category %></p>
-                <p><%= thought.content %></p>
-                <p>♥️ - <%= thought.likes ? thought.likes.length : 0 %> | A thought from <%= author.username %> | <%= thought.comments ? thought.comments.length : 0 %> - 💬</p>
-            <% }); %>
-        </a>
-    </article>
+
+    <div class="container">
+        <header class="header">
+            <%- include('./partials/nav.ejs') %>
+        </header>
+        <main class="content">
+            <h1 class="page-title">A Random Thought To Start Your Day</h1>
+            <article class="each-thought">
+                <a href="/thoughts/<%= thought._id %>">
+                    <% thought.categories.forEach(category => { %>
+                        <p class="tags"><%= category %></p>
+                        <p><%= thought.content %></p>
+                        <p>♥️ - <%= thought.likes ? thought.likes.length : 0 %> | A thought from <%= author.username %> | <%= thought.comments ? thought.comments.length : 0 %> - 💬</p>
+                    <% }); %>
+                </a>
+            </article>
+        </main>
+        <footer class="footer">
+            <%- include('./partials/footer.ejs') %>
+        </footer>
+    </div>
+
     
 </body>
 </html>

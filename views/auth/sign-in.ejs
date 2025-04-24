@@ -8,23 +8,33 @@
     <title>Sign In</title>
 </head>
 <body>
-    <%- include('../partials/nav.ejs') %>
-    <h1 class="page-title">Sign In</h1>
-    <form action="/auth/sign-in" method="POST">
-        <div class="input-control">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="Email" required>
-        </div>
-        <div class="input-control">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Password" required>
-        </div>
+    <div class="container">
+        <header class="header">
+            <%- include('../partials/nav.ejs') %>
+        </header>
+        <main class="content">
+            <h1 class="page-title">Sign In</h1>
+            <form action="/auth/sign-in" method="POST">
+                <div class="input-control">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="input-control">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                </div>
+        
+                <% if (errorMessage) { %>
+                    <p class="error-message"><%= errorMessage %></p>
+                <% } %>
+        
+                <button class="submit" type="submit">Sign In</button>
+            </form>
+        </main>
+        <footer class="footer">
+            <%- include('../partials/footer.ejs') %>
+        </footer>
+    </div>
 
-        <% if (errorMessage) { %>
-            <p class="error-message"><%= errorMessage %></p>
-        <% } %>
-
-        <button class="submit" type="submit">Sign In</button>
-    </form>
 </body>
 </html>

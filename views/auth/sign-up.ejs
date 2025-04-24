@@ -8,31 +8,41 @@
     <title>Sign Up</title>
 </head>
 <body>
-    <%- include('../partials/nav.ejs') %>
-    <h1 class="page-title">Create a account</h1>
-    <form action="/auth/sign-up" method="POST">
-        <div class="input-control">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" placeholder="Email" required>
-        </div>
-        <div class="input-control">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username" placeholder="Username" required>
-        </div>
-        <div class="input-control">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Password" required>
-        </div>
-        <div class="input-control">
-            <label for="passwordConfirm">Password</label>
-            <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confrim Password" required>
-        </div>
+    <div class="container">
+        <header class="header">
+            <%- include('../partials/nav.ejs') %>
+        </header>
+        <main class="content">
+            <h1 class="page-title">Create a account</h1>
+            <form action="/auth/sign-up" method="POST">
+                <div class="input-control">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Email" required>
+                </div>
+                <div class="input-control">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" placeholder="Username" required>
+                </div>
+                <div class="input-control">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="Password" required>
+                </div>
+                <div class="input-control">
+                    <label for="passwordConfirm">Password</label>
+                    <input type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confrim Password" required>
+                </div>
+        
+                <% if (errorMessage) { %>
+                    <p class="error-message"><%= errorMessage %></p>
+                <% } %>
+        
+                <button class="submit" type="submit">Sign Up</button>
+            </form>
+        </main>
+        <footer class="footer">
+            <%- include('../partials/footer.ejs') %>
+        </footer>
+    </div>
 
-        <% if (errorMessage) { %>
-            <p class="error-message"><%= errorMessage %></p>
-        <% } %>
-
-        <button class="submit" type="submit">Sign Up</button>
-    </form>
 </body>
 </html>

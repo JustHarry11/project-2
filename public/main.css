@@ -1,11 +1,38 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-html {
+body, html {
     font-family: "Urbanist", sans-serif;
+    height: 100%;
 }
 
+/* MAIN */
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: #7e0303;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.content {
+    flex: 1;
+    padding: 20px;
+}
+
+.footer {
+    background-color: #7e0303;
+    text-align: center;
+    padding: 15px 0;
+}
 /* NAV */
 .nav-bar a {
     text-decoration: none;
@@ -81,7 +108,7 @@ button:not(.submit) {
     display: flex;
     justify-content: center;
     /* border: 2px solid black; */
-    margin-top: 10px;
+    margin-top: 2rem;
     
 }
 

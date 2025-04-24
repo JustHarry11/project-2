@@ -8,29 +8,41 @@
     <title>Add Thought | Shower Thoughts</title>
 </head>
 <body>
-    <%- include('../partials/nav.ejs') %>
-    <h1 class="page-title">Add Thought</h1>
+    <div class="container">
+        <header class="header">
+            <%- include('../partials/nav.ejs') %>
+        </header>
+        <main class="content">
+            <h1 class="page-title">Add Thought</h1>
+    
+            <form class="add-thoughts" action="/thoughts" method="POST">
+                <div>
+                    <label for="content">Thought</label>
+                    <textarea name="content" id="content" required></textarea>
+                </div>
+                <div>
+                    <label for="categories">Category</label>
+                    <select name="categories" id="categories" required>
+                        <option value="Casual Thought">Casual Thought</option>
+                        <option value="Crazy Idea">Crazy Idea</option>
+                        <option value="Speculation">Speculation</option>
+                        <option value="Musing">Musing</option>
+                    </select>
+                </div>
+        
+                <% if (errorMessage) { %>
+                 <p><%= errorMessage %></p>
+                <% } %>
+        
+                <button class="submit" type="submit">Submit</button>
+            </form>
+        </main>
+        <footer class="footer">
+            <%- include('../partials/footer.ejs') %>
+        </footer>
 
-    <form class="add-thoughts" action="/thoughts" method="POST">
-        <div>
-            <label for="content">Thought</label>
-            <textarea name="content" id="content" required></textarea>
-        </div>
-        <div>
-            <label for="categories">Category</label>
-            <select name="categories" id="categories" required>
-                <option value="Casual Thought">Casual Thought</option>
-                <option value="Crazy Idea">Crazy Idea</option>
-                <option value="Speculation">Speculation</option>
-                <option value="Musing">Musing</option>
-            </select>
-        </div>
 
-        <% if (errorMessage) { %>
-         <p><%= errorMessage %></p>
-        <% } %>
+    </div>
 
-        <button class="submit" type="submit">Submit</button>
-    </form>
 </body>
 </html>
