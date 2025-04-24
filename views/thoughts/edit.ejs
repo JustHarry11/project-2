@@ -16,7 +16,7 @@
         <main class="content">
             <h1 class="page-title">Edit Thought</h1>
     
-            <form action="/thoughts/<%= thought._id %>?_method=PUT" method="POST">
+            <form class="form" action="/thoughts/<%= thought._id %>?_method=PUT" method="POST">
                 <div class="input-control">
                     <label for="content">Thought</label>
                     <textarea name="content" id="content" required><%= thought.content %></textarea>

@@ -93,6 +93,11 @@ input, textarea, select{
 }
 .comment {
     padding: 1rem;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 .tags {
     list-style-type: none;
