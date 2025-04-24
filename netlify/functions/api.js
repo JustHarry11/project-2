@@ -8,6 +8,7 @@ import MongoStore from 'connect-mongo'
 import 'dotenv/config'
 import passUserToView from '../../middleware/passUserToView.js'
 import passErrorToView from '../../middleware/passErrorToView.js'
+import bodyParser from '../../middleware/bodyParser.js'
 
 import Thought from '../../models/Thought.js'
 
@@ -20,7 +21,7 @@ const app = express()
 const port = process.env.PORT || 3000
 
 // ! Middleware
-app.use(express.urlencoded())
+app.use(bodyParser)
 app.use(morgan('dev'))
 app.use(express.static('public'))
 app.use(methodOverride('_method'))
