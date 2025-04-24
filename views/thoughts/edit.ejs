@@ -14,7 +14,7 @@
             <%- include('../partials/nav.ejs') %>
         </header>
         <main class="content">
-            <h1>Edit Thought</h1>
+            <h1 class="page-title">Edit Thought</h1>
     
             <form action="/thoughts/<%= thought._id %>?_method=PUT" method="POST">
                 <div class="input-control">
@@ -31,7 +31,7 @@
                     </select>
                 </div>
         
-                <button type="submit">Submit</button>
+                <button class="submit" type="submit">Submit</button>
             </form>            
         </main>
         <footer class="footer">

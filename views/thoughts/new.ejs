@@ -14,13 +14,13 @@
         </header>
         <main class="content">
             <h1 class="page-title">Add Thought</h1>
-    
-            <form class="add-thoughts" action="/thoughts" method="POST">
-                <div>
+
+            <form class="form" action="/thoughts" method="POST">
+                <div class="input-control">
                     <label for="content">Thought</label>
                     <textarea name="content" id="content" required></textarea>
                 </div>
-                <div>
+                <div class="input-control">
                     <label for="categories">Category</label>
                     <select name="categories" id="categories" required>
                         <option value="Casual Thought">Casual Thought</option>
@@ -36,6 +36,7 @@
         
                 <button class="submit" type="submit">Submit</button>
             </form>
+
         </main>
         <footer class="footer">
             <%- include('../partials/footer.ejs') %>
