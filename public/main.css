@@ -169,4 +169,8 @@ input {
 
 ul {
     list-style: none;
+    text-align: center; 
+}
+li {
+    padding-bottom: 2rem;
 }
