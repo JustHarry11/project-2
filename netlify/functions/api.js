@@ -15,7 +15,7 @@ import Thought from '../../models/Thought.js'
 import thoughtsRouter from '../../controllers/thoughts.js'
 import authRouter from '../../controllers/auth.js'
 import commentRouter from '../../controllers/comments.js'
-import userRouter from './controllers/users.js'
+import userRouter from '../../controllers/users.js'
 
 // ! Variables
 const app = express()
