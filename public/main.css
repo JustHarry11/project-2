@@ -129,6 +129,7 @@ button:not(.submit) {
     display: flex;
     justify-content: center;
     margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 /* ADD THOUGHT PAGE */
@@ -164,4 +165,8 @@ input {
 }
 .footer a:hover{
     color: #7e0303;
+}
+
+ul {
+    list-style: none;
 }

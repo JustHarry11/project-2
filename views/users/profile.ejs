@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/main.css">
+    <title>Profile Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <%- include('../partials/nav.ejs') %>
+        </header>
+        <main class="content">
+            <h1 class="page-title">Your Thoughts</h1>
+            <h2 class="page-title">Created Thoughts</h2>
+            <div class="each-thought">
+                <ul>
+                    <% if (authoredThoughts.length === 0) { %>
+                        <p>You have no authored thoughts</p>
+                    <% } %>
+                    <% authoredThoughts.forEach(thought => { %>
+                      <li>
+                        <a href="/thoughts/<%= thought._id%>">
+                          <%= thought.content %>
+                        </a>
+                      </li>  
+                    <% }); %>
+                  </ul>
+            </div>
+            <h2 class="page-title">Liked Thoughts</h2>
+            <div class="each-thought">
+                <ul>
+                    <% if (likedThoughts.length === 0) { %>
+                        <p>You have no liked thoughts</p>
+                    <% } %>
+                  <% likedThoughts.forEach(thought => { %>
+                    <li>
+                      <a href="/thoughts/<%= thought._id %>">
+                        <%= thought.content %>
+                      </a>
+                    </li>
+                    
+                  <% }); %>
+                </ul>
+            </div>
+        </main>
+        <footer class="footer">
+            <%- include('../partials/footer.ejs') %>
+        </footer>
+    </div>
+</body>
+</html>
