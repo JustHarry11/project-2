@@ -1,3 +1,5 @@
+<h1 align="center">Shower Thoughts</h1>
+
 # Description
 
 At the end of our sixth week on the course we started to generate ideas for our second project. The project was to create a MEN stack CRUD app. 
