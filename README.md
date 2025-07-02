@@ -43,6 +43,12 @@ This is a solo project and I started workin on it on the 17th April and finished
 
 # Planning
 
+![wireframe](WireframeProject2.png)
+
+![wireframe](ERD.png)
+
+
+
 # Build/Code Process
 
 # Challenges
